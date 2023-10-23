@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:moto_go/constants/app_config.dart';
 import 'package:moto_go/constants/colors.dart';
 import 'package:moto_go/constants/fonts.dart';
-import 'package:moto_go/splash_screen.dart';
+import 'package:moto_go/view/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const SplashScreen(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

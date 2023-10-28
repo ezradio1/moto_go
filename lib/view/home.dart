@@ -6,6 +6,7 @@ import 'package:moto_go/constants/motorcycle_list.dart';
 import 'package:moto_go/models/banner_ads.dart';
 import 'package:moto_go/models/motorcycle.dart';
 import 'package:moto_go/utils/screen.dart';
+import 'package:moto_go/view/collection_detail.dart';
 import 'package:moto_go/widget/custom_container.dart';
 import 'package:moto_go/widget/motorcycle_card.dart';
 
@@ -17,7 +18,6 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(0),
@@ -279,6 +279,16 @@ class MotorcycleList extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Motorcycle> fiveMotorcycleList = motorcycleList.sublist(0, 7);
 
+    void handleClickItem(Motorcycle selectedData) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => CollectionDetail(
+                  selectedData: selectedData,
+                )), // Navigate to main screen
+      );
+    }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -316,6 +326,9 @@ class MotorcycleList extends StatelessWidget {
                   itemCount: fiveMotorcycleList.length,
                   itemBuilder: (BuildContext context, int index) =>
                       MotorcycleCard(
+                          onTap: () {
+                            handleClickItem(fiveMotorcycleList[index]);
+                          },
                           brand: fiveMotorcycleList[index].brand,
                           merk: fiveMotorcycleList[index].merk,
                           image: fiveMotorcycleList[index].image,

@@ -3,6 +3,7 @@ import 'package:moto_go/constants/colors.dart';
 import 'package:moto_go/constants/motorcycle_list.dart';
 import 'package:moto_go/models/motorcycle.dart';
 import 'package:moto_go/utils/screen.dart';
+import 'package:moto_go/view/collection_detail.dart';
 import 'package:moto_go/widget/custom_container.dart';
 import 'package:moto_go/widget/input_custom.dart';
 import 'package:moto_go/widget/motorcycle_card.dart';
@@ -32,6 +33,16 @@ class _CollectionState extends State<Collection> {
     });
   }
 
+  void handleClickItem(Motorcycle selectedData) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => CollectionDetail(
+                selectedData: selectedData,
+              )), // Navigate to main screen
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     bool isMobileScreen = isMobile(context);
@@ -55,40 +66,41 @@ class _CollectionState extends State<Collection> {
                         .toList()
                     : motorcycleList;
 
-    return Center(
-        child: CustomContainer(
-            child: Container(
-                padding: const EdgeInsets.all(8),
-                color: Colors.white,
-                child: SafeArea(
-                    child: Column(
-                  children: [
-                    SearchInput(onChangeSearch: handleChangeSearch),
-                    BrandFilter(
-                      activeFilter: activeFilter,
-                      onClickFilter: handleClickFilter,
-                    ),
-                    collectionList.isEmpty
-                        ? const EmptyState()
-                        : Expanded(
-                            child: GridView.count(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 8),
-                                crossAxisCount: isMobileScreen ? 2 : 5,
-                                childAspectRatio: 0.85,
-                                children: List.generate(
-                                  collectionList.length,
-                                  (index) => MotorcycleCard(
-                                      brand: collectionList[index].brand,
-                                      merk: collectionList[index].merk,
-                                      image: collectionList[index].image,
-                                      price: collectionList[index].price,
-                                      isAvailable:
-                                          collectionList[index].isAvailable,
-                                      year: collectionList[index].year),
-                                ))),
-                  ],
-                )))));
+    return CustomContainer(
+        child: Container(
+            padding: const EdgeInsets.all(8),
+            color: Colors.white,
+            child: SafeArea(
+                child: Column(
+              children: [
+                SearchInput(onChangeSearch: handleChangeSearch),
+                BrandFilter(
+                  activeFilter: activeFilter,
+                  onClickFilter: handleClickFilter,
+                ),
+                collectionList.isEmpty
+                    ? const EmptyState()
+                    : Expanded(
+                        child: GridView.count(
+                            padding: const EdgeInsets.symmetric(vertical: 8),
+                            crossAxisCount: isMobileScreen ? 2 : 5,
+                            childAspectRatio: 0.85,
+                            children: List.generate(
+                              collectionList.length,
+                              (index) => MotorcycleCard(
+                                  onTap: () {
+                                    handleClickItem(collectionList[index]);
+                                  },
+                                  brand: collectionList[index].brand,
+                                  merk: collectionList[index].merk,
+                                  image: collectionList[index].image,
+                                  price: collectionList[index].price,
+                                  isAvailable:
+                                      collectionList[index].isAvailable,
+                                  year: collectionList[index].year),
+                            ))),
+              ],
+            ))));
   }
 }
 

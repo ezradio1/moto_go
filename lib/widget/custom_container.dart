@@ -9,9 +9,11 @@ class CustomContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     double maxWidthScreen = getMaxWidth(context);
 
-    return Container(
-      constraints: BoxConstraints(maxWidth: maxWidthScreen),
-      child: child,
+    return Center(
+      child: Container(
+        constraints: BoxConstraints(maxWidth: maxWidthScreen),
+        child: child,
+      ),
     );
   }
 }

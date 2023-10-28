@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:moto_go/constants/bottom_navigatio_menu.dart';
 import 'package:moto_go/constants/colors.dart';
 import 'package:moto_go/view/home.dart';
 import 'package:moto_go/view/profile.dart';
 import 'package:moto_go/view/transaction.dart';
-import 'package:moto_go/view/wishlist.dart';
+import 'package:moto_go/view/collection.dart';
 
 class Layout extends StatefulWidget {
   const Layout({super.key});
@@ -13,7 +14,7 @@ class Layout extends StatefulWidget {
 }
 
 class _LayoutState extends State<Layout> {
-  int _selectedIndex = 0;
+  int _selectedIndex = BottomNavigationMenu.home;
 
   void onNavbarClicked(int index) {
     setState(() {
@@ -24,18 +25,18 @@ class _LayoutState extends State<Layout> {
   @override
   Widget build(BuildContext context) {
     final listPage = <Widget>[
-      const Home(),
+      Home(onNavigate: (index) => onNavbarClicked(index)),
+      const Collection(),
       const Transaction(),
-      const Whislist(),
       const Profile(),
     ];
 
     final bottomNavbarItems = <BottomNavigationBarItem>[
       const BottomNavigationBarItem(icon: Icon(Icons.grid_view), label: 'Home'),
       const BottomNavigationBarItem(
-          icon: Icon(Icons.assignment), label: 'Transaction'),
+          icon: Icon(Icons.moped), label: 'Collection'),
       const BottomNavigationBarItem(
-          icon: Icon(Icons.favorite), label: 'Wishlist'),
+          icon: Icon(Icons.assignment), label: 'Transaction'),
       const BottomNavigationBarItem(
           icon: Icon(Icons.supervised_user_circle), label: 'Profile'),
     ];

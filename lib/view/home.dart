@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:moto_go/constants/bottom_navigatio_menu.dart';
 import 'package:moto_go/constants/colors.dart';
 import 'package:moto_go/constants/motorcycle_list.dart';
 import 'package:moto_go/models/banner_ads.dart';
@@ -9,7 +10,8 @@ import 'package:moto_go/widget/input_custom.dart';
 import 'package:moto_go/widget/motorcycle_card.dart';
 
 class Home extends StatelessWidget {
-  const Home({super.key});
+  final Function(int index) onNavigate;
+  const Home({super.key, required this.onNavigate});
 
   void handleTopUp() {}
 
@@ -51,11 +53,11 @@ class Home extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 16.0),
                 child: Container(
                   constraints: BoxConstraints(maxWidth: maxWidthScreen),
-                  child: const Column(
+                  child: Column(
                     children: [
-                      BannerAdsCarousel(),
-                      SearchInput(),
-                      MotorcycleList()
+                      const BannerAdsCarousel(),
+                      SearchInput(onNavigate: (index) => onNavigate(index)),
+                      MotorcycleList(onNavigate: (index) => onNavigate(index))
                     ],
                   ),
                 )),
@@ -236,31 +238,48 @@ class BannerAdsCarousel extends StatelessWidget {
 }
 
 class SearchInput extends StatelessWidget {
-  const SearchInput({super.key});
-
-  void handleClickSearchButton() {}
+  final Function(int index) onNavigate;
+  const SearchInput({super.key, required this.onNavigate});
 
   @override
   Widget build(BuildContext context) {
     return Container(
         padding: const EdgeInsets.all(16),
         child: GestureDetector(
-          onTap: handleClickSearchButton,
-          child: const InputCustom(
-            labelText: 'Search',
-            icon: Icons.search,
-          ),
-        ));
+            onTap: () {
+              onNavigate(BottomNavigationMenu.collection);
+            },
+            child: Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey),
+                    borderRadius: BorderRadius.all(Radius.circular(6))),
+                child: const Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.search,
+                      color: Colors.grey,
+                    ),
+                    SizedBox(
+                      width: 8,
+                    ),
+                    Text(
+                      'Search our collection here....',
+                      style: TextStyle(color: Colors.grey),
+                    )
+                  ],
+                ))));
   }
 }
 
 class MotorcycleList extends StatelessWidget {
-  const MotorcycleList({super.key});
+  final Function(int index) onNavigate;
+  const MotorcycleList({super.key, required this.onNavigate});
 
   @override
   Widget build(BuildContext context) {
     final List<Motorcycle> fiveMotorcycleList = motorcycleList.sublist(0, 7);
-    void handleClickViewAll() {}
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -275,7 +294,9 @@ class MotorcycleList extends StatelessWidget {
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               GestureDetector(
-                onTap: handleClickViewAll,
+                onTap: () {
+                  onNavigate(BottomNavigationMenu.collection);
+                },
                 child: const Text(
                   'View All',
                   style: TextStyle(fontSize: 12, color: Colors.black54),

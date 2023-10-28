@@ -6,7 +6,7 @@ import 'package:moto_go/constants/motorcycle_list.dart';
 import 'package:moto_go/models/banner_ads.dart';
 import 'package:moto_go/models/motorcycle.dart';
 import 'package:moto_go/utils/screen.dart';
-import 'package:moto_go/widget/input_custom.dart';
+import 'package:moto_go/widget/custom_container.dart';
 import 'package:moto_go/widget/motorcycle_card.dart';
 
 class Home extends StatelessWidget {
@@ -17,7 +17,6 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double maxWidthScreen = getMaxWidth(context);
 
     return Scaffold(
       appBar: PreferredSize(
@@ -51,8 +50,7 @@ class Home extends StatelessWidget {
           Expanded(
             child: SingleChildScrollView(
                 padding: const EdgeInsets.only(bottom: 16.0),
-                child: Container(
-                  constraints: BoxConstraints(maxWidth: maxWidthScreen),
+                child: CustomContainer(
                   child: Column(
                     children: [
                       const BannerAdsCarousel(),
@@ -253,7 +251,7 @@ class SearchInput extends StatelessWidget {
                 padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
                     border: Border.all(color: Colors.grey),
-                    borderRadius: BorderRadius.all(Radius.circular(6))),
+                    borderRadius: const BorderRadius.all(Radius.circular(6))),
                 child: const Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [

@@ -35,6 +35,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  carousel_slider: ^4.2.1
 
 dev_dependencies:
   flutter_test:
@@ -62,6 +63,28 @@ flutter:
   assets:
     - images/logo_primary.png
     - images/logo_white.png
+    - images/banner-1.jpeg
+    - images/banner-2.jpeg
+    - images/banner-3.jpeg
+    - images/banner-4.jpeg
+    - images/motorcycle/adv.png
+    - images/motorcycle/aerox.png
+    - images/motorcycle/cbr.png
+    - images/motorcycle/ducati.png
+    - images/motorcycle/fazio.png
+    - images/motorcycle/filano.png
+    - images/motorcycle/fino.png
+    - images/motorcycle/mio.png
+    - images/motorcycle/nmax.png
+    - images/motorcycle/pcx.png
+    - images/motorcycle/r1.png
+    - images/motorcycle/r25.png
+    - images/motorcycle/scoppy.png
+    - images/motorcycle/vario.png
+    - images/motorcycle/vespa.png
+    - images/motorcycle/vixion.png
+    - images/motorcycle/xmax.png
+    - images/motorcycle/zx25.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -27,7 +27,7 @@ class _LayoutState extends State<Layout> {
       const Home(),
       const Transaction(),
       const Whislist(),
-      const Profile()
+      const Profile(),
     ];
 
     final bottomNavbarItems = <BottomNavigationBarItem>[
@@ -50,9 +50,7 @@ class _LayoutState extends State<Layout> {
       onTap: onNavbarClicked,
     );
     return Scaffold(
-      body: Center(
-        child: listPage[_selectedIndex],
-      ),
+      body: listPage[_selectedIndex],
       bottomNavigationBar: bottomNavbar,
     );
   }

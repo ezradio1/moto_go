@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
         fontFamily: FontConstants.primary,
         colorScheme: ColorScheme.fromSeed(seedColor: ColorConstants.primary),
         useMaterial3: true,
+          appBarTheme: AppBarTheme(backgroundColor: ColorConstants.primary)
       ),
       home: const SplashScreen(),
       debugShowCheckedModeBanner: false,

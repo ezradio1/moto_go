@@ -5,6 +5,8 @@ import 'package:moto_go/utils/format_price.dart';
 import 'package:moto_go/widget/button_custom.dart';
 import 'package:moto_go/widget/chip.dart';
 import 'package:moto_go/widget/custom_container.dart';
+import 'package:moto_go/widget/dialog_confirmation_rent.dart';
+import 'package:moto_go/widget/dialog_rent_success.dart';
 
 class CollectionDetail extends StatefulWidget {
   final Motorcycle selectedData;
@@ -16,6 +18,32 @@ class CollectionDetail extends StatefulWidget {
 
 class _CollectionDetailState extends State<CollectionDetail> {
   bool isReadMoreActive = true;
+  ValueNotifier<bool> isLoading = ValueNotifier<bool>(false);
+  int selectedRentalDuration = 3;
+
+  void handleClickRentalDuration(int value) {
+    setState(() {
+      selectedRentalDuration = value;
+    });
+  }
+
+  void handleClickOrder() {
+    setState(() {
+      isLoading.value = true;
+    });
+    Future.delayed(Duration(milliseconds: 1500), () {
+      Navigator.pop(context);
+      setState(() {
+        isLoading.value = false;
+      });
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return DialogRentSuccess();
+          });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final selectedData = widget.selectedData;
@@ -74,6 +102,11 @@ class _CollectionDetailState extends State<CollectionDetail> {
                     ],
                   ),
                   const SizedBox(height: 18),
+                  RentalDuration(
+                    selectedItem: selectedRentalDuration,
+                    onTap: (value) => handleClickRentalDuration(value),
+                  ),
+                  const SizedBox(height: 18),
                   const Text(
                     'Brand',
                     style: TextStyle(fontWeight: FontWeight.bold),
@@ -125,7 +158,16 @@ class _CollectionDetailState extends State<CollectionDetail> {
           children: [
             Expanded(
               child: ButtonCustom(
-                onPressed: () {},
+                onPressed: () => showDialog(
+                    context: context,
+                    builder: (BuildContext context) => DialogConfirmationRent(
+                          selectedData: selectedData,
+                          rentalDuration: selectedRentalDuration,
+                          onClickOrder: () {
+                            handleClickOrder();
+                          },
+                          loading: isLoading,
+                        )),
                 text: 'Rent',
                 type: ButtonType.outline,
               ),
@@ -153,6 +195,45 @@ class _CollectionDetailState extends State<CollectionDetail> {
           ],
         ),
       )), // Widget yang tetap di bawah
+    );
+  }
+}
+
+class RentalDuration extends StatelessWidget {
+  final int selectedItem;
+  final Function(int selectedItem) onTap;
+  const RentalDuration(
+      {super.key, required this.selectedItem, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    final List<int> rentalDuration = [3, 6, 12];
+    return Row(
+      children: rentalDuration
+          .map((item) => GestureDetector(
+              onTap: () {
+                onTap(item);
+              },
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                margin: EdgeInsets.only(right: 8),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                      width: 1,
+                      color: selectedItem == item
+                          ? ColorConstants.primary
+                          : Colors.black54),
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                child: Text(
+                  '$item hours',
+                  style: TextStyle(
+                      color: selectedItem == item
+                          ? ColorConstants.primary
+                          : Colors.black54),
+                ),
+              )))
+          .toList(),
     );
   }
 }

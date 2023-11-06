@@ -3,13 +3,23 @@ import 'package:moto_go/models/transaction.dart';
 import 'package:moto_go/utils/format_price.dart';
 import 'package:moto_go/widget/button_custom.dart';
 import 'package:intl/intl.dart';
+import 'package:moto_go/widget/dialog_coming_soon.dart';
 
 class TransactionCard extends StatelessWidget {
   final Transaction data;
   const TransactionCard({super.key, required this.data});
 
+
   @override
   Widget build(BuildContext context) {
+    void handleDialogComingSoon() {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return const DialogComingSoon();
+          });
+    }
+    
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
@@ -80,13 +90,19 @@ class TransactionCard extends StatelessWidget {
                 children: [
                   ButtonCustom(
                     text: 'Review',
-                    onPressed: () {},
+                    onPressed: () {
+                      handleDialogComingSoon();
+                    },
                     type: ButtonType.outline,
                   ),
                   const SizedBox(
                     width: 8,
                   ),
-                  ButtonCustom(text: 'Rental Again', onPressed: () {})
+                  ButtonCustom(
+                      text: 'Rental Again',
+                      onPressed: () {
+                        handleDialogComingSoon();
+                      })
                 ],
               )
             ],

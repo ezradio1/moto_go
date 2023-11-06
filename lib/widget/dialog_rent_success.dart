@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:moto_go/constants/fonts.dart';
-import 'package:moto_go/models/motorcycle.dart';
-import 'package:moto_go/utils/format_price.dart';
 import 'package:moto_go/widget/button_custom.dart';
 
 class DialogRentSuccess extends StatelessWidget {

@@ -88,6 +88,7 @@ flutter:
     - images/motorcycle/xmax.png
     - images/motorcycle/zx25.png
     - images/empty_illustration.png
+    - images/coming_soon_illustration.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -22,7 +22,10 @@ class DialogComingSoon extends StatelessWidget {
             const SizedBox(
               height: 28,
             ),
-            Image.asset('images/coming_soon_illustration.png'),
+            Image.asset(
+              'images/coming_soon_illustration.png',
+              width: 400,
+            ),
             const SizedBox(
               height: 16,
             ),

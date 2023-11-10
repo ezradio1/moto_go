@@ -9,6 +9,7 @@ class Profile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     List<Menu> menu_1 = [
       Menu(Icons.people, 'Change Profile Information'),
       Menu(Icons.settings, 'Setting'),

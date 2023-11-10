@@ -1,15 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:moto_go/constants/colors.dart';
+import 'package:moto_go/constants/storage_key.dart';
 import 'package:moto_go/models/menu.dart';
+import 'package:moto_go/utils/shared_preference.dart';
+import 'package:moto_go/view/login.dart';
 import 'package:moto_go/widget/custom_container.dart';
 import 'package:moto_go/widget/dialog_coming_soon.dart';
 
 class Profile extends StatelessWidget {
   const Profile({super.key});
 
+  void showComingSoon(context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return const DialogComingSoon();
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
-
     List<Menu> menu_1 = [
       Menu(Icons.people, 'Change Profile Information'),
       Menu(Icons.settings, 'Setting'),
@@ -75,12 +85,29 @@ class Profile extends StatelessWidget {
                   const SizedBox(
                     height: 24,
                   ),
-                  MenuContainer(items: menu_1),
-                  MenuContainer(items: menu_2),
+                  MenuContainer(
+                    items: menu_1,
+                    onTap: () {
+                      showComingSoon(context);
+                    },
+                  ),
+                  MenuContainer(
+                    items: menu_2,
+                    onTap: () {
+                      showComingSoon(context);
+                    },
+                  ),
                   MenuContainer(
                     items: menu_3,
                     color: Colors.red,
                     isLast: true,
+                    onTap: () {
+                      removeData(isLogin);
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Login()));
+                    },
                   ),
                 ],
               ),
@@ -94,9 +121,11 @@ class MenuContainer extends StatelessWidget {
   final List<Menu> items;
   final Color color;
   final bool isLast;
+  final Function onTap;
   const MenuContainer(
       {super.key,
       required this.items,
+      required this.onTap,
       this.color = Colors.black,
       this.isLast = false});
 
@@ -118,11 +147,7 @@ class MenuContainer extends StatelessWidget {
                       label: items[index].title,
                       color: color,
                       onTap: () {
-                        showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return const DialogComingSoon();
-                            });
+                        onTap();
                       },
                     ))));
   }

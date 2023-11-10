@@ -10,8 +10,6 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    removeData(isLogin);
-
     Future.delayed(const Duration(seconds: 2), () {
       getData(isLogin).then((value) {
         if (value == true) {

@@ -75,7 +75,7 @@ class HeaderBar extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         const Text(
-          'Hi, Jack',
+          'Hi, Ezra',
           style: TextStyle(
               fontWeight: FontWeight.bold, color: Colors.white, fontSize: 24),
         ),

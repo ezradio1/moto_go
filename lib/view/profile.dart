@@ -21,16 +21,30 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Menu> menu_1 = [
-      Menu(Icons.people, 'Change Profile Information'),
-      Menu(Icons.settings, 'Setting'),
-      Menu(Icons.camera_enhance, 'ID Verification')
+      Menu(Icons.people, 'Change Profile Information', () {
+        showComingSoon(context);
+      }),
+      Menu(Icons.settings, 'Setting', () {
+        showComingSoon(context);
+      }),
+      Menu(Icons.camera_enhance, 'ID Verification', () {
+        showComingSoon(context);
+      })
     ];
     List<Menu> menu_2 = [
-      Menu(Icons.headset_mic, 'Help Center'),
-      Menu(Icons.lock, 'Privacy Policy'),
+      Menu(Icons.headset_mic, 'Help Center', () {
+        showComingSoon(context);
+      }),
+      Menu(Icons.lock, 'Privacy Policy', () {
+        showComingSoon(context);
+      }),
     ];
     List<Menu> menu_3 = [
-      Menu(Icons.logout, 'Log Out'),
+      Menu(Icons.logout, 'Log Out', () {
+        removeData(isLogin);
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => const Login()));
+      }),
     ];
     return Scaffold(
         appBar: PreferredSize(
@@ -87,27 +101,14 @@ class Profile extends StatelessWidget {
                   ),
                   MenuContainer(
                     items: menu_1,
-                    onTap: () {
-                      showComingSoon(context);
-                    },
                   ),
                   MenuContainer(
                     items: menu_2,
-                    onTap: () {
-                      showComingSoon(context);
-                    },
                   ),
                   MenuContainer(
                     items: menu_3,
                     color: Colors.red,
                     isLast: true,
-                    onTap: () {
-                      removeData(isLogin);
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const Login()));
-                    },
                   ),
                 ],
               ),
@@ -121,11 +122,9 @@ class MenuContainer extends StatelessWidget {
   final List<Menu> items;
   final Color color;
   final bool isLast;
-  final Function onTap;
   const MenuContainer(
       {super.key,
       required this.items,
-      required this.onTap,
       this.color = Colors.black,
       this.isLast = false});
 
@@ -147,7 +146,7 @@ class MenuContainer extends StatelessWidget {
                       label: items[index].title,
                       color: color,
                       onTap: () {
-                        onTap();
+                        items[index].onClick();
                       },
                     ))));
   }

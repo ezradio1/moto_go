@@ -61,7 +61,7 @@ class TransactionCard extends StatelessWidget {
               ),
               Text(
                 DateFormat('dd MMMM yyy').format(data.rentalDate),
-                style: const TextStyle(color: Colors.black45, fontSize: 12),
+                style: const TextStyle(color: Colors.black45, fontSize: 11),
               )
             ],
           ),

@@ -84,7 +84,7 @@ class _CollectionState extends State<Collection> {
                         child: GridView.count(
                             padding: const EdgeInsets.symmetric(vertical: 8),
                             crossAxisCount: isMobileScreen ? 2 : 5,
-                            childAspectRatio: 0.85,
+                            childAspectRatio: 0.8,
                             children: List.generate(
                               collectionList.length,
                               (index) => MotorcycleCard(

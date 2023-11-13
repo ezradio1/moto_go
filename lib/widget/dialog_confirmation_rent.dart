@@ -55,19 +55,30 @@ class _DialogConfirmationRentState extends State<DialogConfirmationRent> {
             const TextSpan(text: '?')
           ])),
       actions: [
-        ButtonCustom(
-            loading: widget.loading.value,
-            text: 'Cancel',
-            type: ButtonType.danger,
-            onPressed: () {
-              Navigator.of(context).pop();
-            }),
-        ButtonCustom(
-            loading: widget.loading.value,
-            text: 'Order',
-            onPressed: () {
-              widget.onClickOrder();
-            })
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              ButtonCustom(
+                  loading: widget.loading.value,
+                  text: 'Cancel',
+                  type: ButtonType.danger,
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  }),
+              const SizedBox(
+                width: 8,
+              ),
+              ButtonCustom(
+                  loading: widget.loading.value,
+                  text: 'Order',
+                  onPressed: () {
+                    widget.onClickOrder();
+                  })
+            ],
+          ),
+        ),
       ],
     );
   }

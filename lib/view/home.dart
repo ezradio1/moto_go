@@ -8,6 +8,7 @@ import 'package:moto_go/models/motorcycle.dart';
 import 'package:moto_go/utils/screen.dart';
 import 'package:moto_go/view/collection_detail.dart';
 import 'package:moto_go/widget/custom_container.dart';
+import 'package:moto_go/widget/dialog_coming_soon.dart';
 import 'package:moto_go/widget/motorcycle_card.dart';
 
 class Home extends StatelessWidget {
@@ -33,17 +34,17 @@ class Home extends StatelessWidget {
           Container(
             padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
             color: ColorConstants.primary,
-            child: const Column(
+            child: Column(
               children: [
-                HeaderBar(),
-                Padding(
+                HeaderBar(onNavigate: (index) => onNavigate(index)),
+                const Padding(
                   padding: EdgeInsets.symmetric(vertical: 8),
                   child: Divider(
                     color: Colors.white,
                     thickness: 0.4,
                   ),
                 ),
-                MotoPay(),
+                const MotoPay(),
               ],
             ),
           ),
@@ -67,7 +68,8 @@ class Home extends StatelessWidget {
 }
 
 class HeaderBar extends StatelessWidget {
-  const HeaderBar({super.key});
+  final Function(int index) onNavigate;
+  const HeaderBar({super.key, required this.onNavigate});
 
   @override
   Widget build(BuildContext context) {
@@ -85,15 +87,17 @@ class HeaderBar extends StatelessWidget {
               Icons.notifications_outlined,
               color: Colors.white,
             ),
-            const SizedBox(width: 8),
-            Container(
-              width: 32,
-              height: 32,
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.white,
-              ),
-              child: Center(
+            IconButton(
+              onPressed: () {
+                onNavigate(3);
+              },
+              icon: Container(
+                width: 32,
+                height: 32,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white,
+                ),
                 child: Icon(
                   Icons.person_4,
                   color: ColorConstants.primary,
@@ -151,7 +155,12 @@ class MotoPay extends StatelessWidget {
                   color: ColorConstants.primary,
                 ),
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) =>
+                            const DialogComingSoon());
+                  },
                   child: const Icon(
                     Icons.add,
                     color: Colors.white,

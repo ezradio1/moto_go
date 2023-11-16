@@ -115,6 +115,9 @@ class _LoginState extends State<Login> {
                       textAlign: TextAlign.center,
                     ),
                   ),
+                  const SizedBox(
+                    height: 8,
+                  ),
                   SizedBox(
                     width: double.infinity,
                     child: ButtonCustom(
@@ -126,6 +129,9 @@ class _LoginState extends State<Login> {
                           handleSignIn(LoginType.apple);
                         }),
                   ),
+                  const SizedBox(
+                    height: 8,
+                  ),
                   SizedBox(
                     width: double.infinity,
                     child: ButtonCustom(
@@ -136,6 +142,9 @@ class _LoginState extends State<Login> {
                         onPressed: () {
                           handleSignIn(LoginType.google);
                         }),
+                  ),
+                  const SizedBox(
+                    height: 8,
                   ),
                   SizedBox(
                     width: double.infinity,

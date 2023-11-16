@@ -10,11 +10,14 @@ class DialogComingSoon extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(3.0),
       ),
-      content: IntrinsicHeight(
+      content: SizedBox(
+        width: 300,
+        height: 320,
         child: Column(
           children: [
             const Text(
               'Exciting New Feature Coming Soon',
+              textAlign: TextAlign.center,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
               ),

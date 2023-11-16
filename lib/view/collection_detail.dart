@@ -5,6 +5,7 @@ import 'package:moto_go/utils/format_price.dart';
 import 'package:moto_go/widget/button_custom.dart';
 import 'package:moto_go/widget/chip.dart';
 import 'package:moto_go/widget/custom_container.dart';
+import 'package:moto_go/widget/dialog_coming_soon.dart';
 import 'package:moto_go/widget/dialog_confirmation_rent.dart';
 import 'package:moto_go/widget/dialog_rent_success.dart';
 
@@ -176,8 +177,8 @@ class _CollectionDetailState extends State<CollectionDetail> {
               width: 8,
             ),
             Container(
-              height: 42,
-              width: 42,
+              height: 37,
+              width: 37,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
                   border: Border.all(width: 1, color: ColorConstants.primary)),
@@ -185,9 +186,13 @@ class _CollectionDetailState extends State<CollectionDetail> {
                 icon: Icon(
                   Icons.favorite,
                   color: ColorConstants.primary, // Warna ikon
-                  size: 24.0, // Ukuran ikon
+                  size: 20.0, // Ukuran ikon
                 ),
                 onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) =>
+                          const DialogComingSoon());
                   // Aksi yang diambil saat tombol ditekan
                 },
               ),

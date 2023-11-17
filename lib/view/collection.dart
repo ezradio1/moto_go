@@ -46,8 +46,6 @@ class _CollectionState extends State<Collection> {
   @override
   Widget build(BuildContext context) {
     bool isMobileScreen = isMobile(context);
-    final isLandscape =
-        MediaQuery.of(context).orientation == Orientation.landscape;
 
     List<Motorcycle> collectionList =
         searchValue != '' && activeFilter.isNotEmpty

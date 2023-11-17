@@ -32,7 +32,7 @@ class _CollectionDetailState extends State<CollectionDetail> {
     setState(() {
       isLoading.value = true;
     });
-    Future.delayed(Duration(milliseconds: 1500), () {
+    Future.delayed(const Duration(milliseconds: 1500), () {
       Navigator.pop(context);
       setState(() {
         isLoading.value = false;
@@ -40,7 +40,7 @@ class _CollectionDetailState extends State<CollectionDetail> {
       showDialog(
           context: context,
           builder: (BuildContext context) {
-            return DialogRentSuccess();
+            return const DialogRentSuccess();
           });
     });
   }
@@ -220,8 +220,8 @@ class RentalDuration extends StatelessWidget {
                 onTap(item);
               },
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                margin: EdgeInsets.only(right: 8),
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                margin: const EdgeInsets.only(right: 8),
                 decoration: BoxDecoration(
                   border: Border.all(
                       width: 1,

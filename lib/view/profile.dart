@@ -73,13 +73,11 @@ class Profile extends StatelessWidget {
                       left: 0,
                       right: 0,
                       child: Center(
-                        child: Container(
-                          child: ClipOval(
-                              child: Image.asset(
-                            'images/photo_profile.jpeg',
-                            width: 120,
-                          )),
-                        ),
+                        child: ClipOval(
+                            child: Image.asset(
+                          'images/photo_profile.jpeg',
+                          width: 120,
+                        )),
                       )),
                 ],
               ),

@@ -138,41 +138,39 @@ class BrandFilter extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(top: 12, bottom: 8),
       height: 32,
-      child: Expanded(
-          child: ListView.separated(
-              separatorBuilder: (BuildContext context, int index) =>
-                  const SizedBox(width: 8), // Add a gap of 10 pixels
-              scrollDirection: Axis.horizontal,
-              itemCount: filterList.length,
-              itemBuilder: (BuildContext context, int index) => GestureDetector(
-                    onTap: () {
-                      onClickFilter(filterList[index]);
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(12)),
+      child: ListView.separated(
+          separatorBuilder: (BuildContext context, int index) =>
+              const SizedBox(width: 8), // Add a gap of 10 pixels
+          scrollDirection: Axis.horizontal,
+          itemCount: filterList.length,
+          itemBuilder: (BuildContext context, int index) => GestureDetector(
+                onTap: () {
+                  onClickFilter(filterList[index]);
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.all(Radius.circular(12)),
+                      color: activeFilter.contains(filterList[index])
+                          ? ColorConstants.primary
+                          : Colors.white,
+                      border: Border.all(
                           color: activeFilter.contains(filterList[index])
                               ? ColorConstants.primary
-                              : Colors.white,
-                          border: Border.all(
-                              color: activeFilter.contains(filterList[index])
-                                  ? ColorConstants.primary
-                                  : Colors.grey)),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 12, vertical: 6),
-                      child: Text(
-                        filterList[index],
-                        style: TextStyle(
-                            fontWeight: activeFilter.contains(filterList[index])
-                                ? FontWeight.bold
-                                : FontWeight.normal,
-                            color: activeFilter.contains(filterList[index])
-                                ? Colors.white
-                                : Colors.black),
-                      ),
-                    ),
-                  ))),
+                              : Colors.grey)),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  child: Text(
+                    filterList[index],
+                    style: TextStyle(
+                        fontWeight: activeFilter.contains(filterList[index])
+                            ? FontWeight.bold
+                            : FontWeight.normal,
+                        color: activeFilter.contains(filterList[index])
+                            ? Colors.white
+                            : Colors.black),
+                  ),
+                ),
+              )),
     );
   }
 }

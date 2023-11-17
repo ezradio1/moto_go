@@ -137,18 +137,17 @@ class MenuContainer extends StatelessWidget {
               bottom:
                   BorderSide(width: isLast ? 0.5 : 0, color: Colors.black26)),
         ),
-        child: Expanded(
-            child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: items.length,
-                itemBuilder: (BuildContext context, int index) => MenuItem(
-                      icon: items[index].icon,
-                      label: items[index].title,
-                      color: color,
-                      onTap: () {
-                        items[index].onClick();
-                      },
-                    ))));
+        child: ListView.builder(
+            shrinkWrap: true,
+            itemCount: items.length,
+            itemBuilder: (BuildContext context, int index) => MenuItem(
+                  icon: items[index].icon,
+                  label: items[index].title,
+                  color: color,
+                  onTap: () {
+                    items[index].onClick();
+                  },
+                )));
   }
 }
 

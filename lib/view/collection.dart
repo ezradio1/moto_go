@@ -46,6 +46,9 @@ class _CollectionState extends State<Collection> {
   @override
   Widget build(BuildContext context) {
     bool isMobileScreen = isMobile(context);
+    final isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
+
     List<Motorcycle> collectionList =
         searchValue != '' && activeFilter.isNotEmpty
             ? motorcycleList
@@ -83,7 +86,7 @@ class _CollectionState extends State<Collection> {
                     : Expanded(
                         child: GridView.count(
                             padding: const EdgeInsets.symmetric(vertical: 8),
-                            crossAxisCount: isMobileScreen ? 2 : 5,
+                            crossAxisCount: isMobileScreen ? 2 : 4,
                             childAspectRatio: 0.8,
                             children: List.generate(
                               collectionList.length,

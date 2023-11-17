@@ -10,34 +10,36 @@ class DialogComingSoon extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(3.0),
       ),
-      content: SizedBox(
-        width: 300,
-        height: 320,
-        child: Column(
-          children: [
-            const Text(
-              'Exciting New Feature Coming Soon',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
+      content: SingleChildScrollView(
+        child: SizedBox(
+          width: 280,
+          height: 320,
+          child: Column(
+            children: [
+              const Text(
+                'Exciting New Feature Coming Soon',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            const SizedBox(
-              height: 28,
-            ),
-            Image.asset(
-              'images/coming_soon_illustration.png',
-              width: 400,
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            const Text(
-              "Stay tuned for an amazing addition to our app! We're working hard to bring you something special. Keep an eye out!",
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 12),
-            ),
-          ],
+              const SizedBox(
+                height: 28,
+              ),
+              Image.asset(
+                'images/coming_soon_illustration.png',
+                width: 400,
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              const Text(
+                "Stay tuned for an amazing addition to our app! We're working hard to bring you something special. Keep an eye out!",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 12),
+              ),
+            ],
+          ),
         ),
       ),
       actions: [

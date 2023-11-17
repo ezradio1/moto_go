@@ -54,66 +54,69 @@ class Profile extends StatelessWidget {
             elevation: 0,
           ),
         ),
-        body: Column(
-          children: [
-            Stack(
-              children: [
-                Positioned(
-                    child: Container(
-                  height: 128,
-                  color: ColorConstants.primary,
-                )),
-                Positioned(
-                    child: Container(
-                  height: 180,
-                )),
-                Positioned(
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    child: Center(
-                      child: Container(
-                        child: ClipOval(
-                            child: Image.asset(
-                          'images/photo_profile.jpeg',
-                          width: 120,
-                        )),
-                      ),
-                    )),
-              ],
-            ),
-            CustomContainer(
-              child: Column(
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Stack(
                 children: [
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  const Text(
-                    "Ezra Audivano Dirfa",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                  ),
-                  const Text(
-                    "ezraaudivano@gmail.com | +623476343748723",
-                    style: TextStyle(fontSize: 12, color: Colors.black45),
-                  ),
-                  const SizedBox(
-                    height: 24,
-                  ),
-                  MenuContainer(
-                    items: menu_1,
-                  ),
-                  MenuContainer(
-                    items: menu_2,
-                  ),
-                  MenuContainer(
-                    items: menu_3,
-                    color: Colors.red,
-                    isLast: true,
-                  ),
+                  Positioned(
+                      child: Container(
+                    height: 128,
+                    color: ColorConstants.primary,
+                  )),
+                  Positioned(
+                      child: Container(
+                    height: 180,
+                  )),
+                  Positioned(
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      child: Center(
+                        child: Container(
+                          child: ClipOval(
+                              child: Image.asset(
+                            'images/photo_profile.jpeg',
+                            width: 120,
+                          )),
+                        ),
+                      )),
                 ],
               ),
-            )
-          ],
+              CustomContainer(
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 12,
+                    ),
+                    const Text(
+                      "Ezra Audivano Dirfa",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                    ),
+                    const Text(
+                      "ezraaudivano@gmail.com | +623476343748723",
+                      style: TextStyle(fontSize: 12, color: Colors.black45),
+                    ),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    MenuContainer(
+                      items: menu_1,
+                    ),
+                    MenuContainer(
+                      items: menu_2,
+                    ),
+                    MenuContainer(
+                      items: menu_3,
+                      color: Colors.red,
+                      isLast: true,
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
         ));
   }
 }
@@ -139,6 +142,7 @@ class MenuContainer extends StatelessWidget {
         ),
         child: ListView.builder(
             shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: items.length,
             itemBuilder: (BuildContext context, int index) => MenuItem(
                   icon: items[index].icon,

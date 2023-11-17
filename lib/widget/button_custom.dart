@@ -3,7 +3,7 @@ import 'package:moto_go/constants/colors.dart';
 
 enum ButtonType { primary, outline, danger, light }
 
-class ButtonCustom extends StatefulWidget {
+class ButtonCustom extends StatelessWidget {
   final String text;
   final ButtonType type;
   final Function onPressed;
@@ -60,35 +60,30 @@ class ButtonCustom extends StatefulWidget {
   }
 
   @override
-  State<ButtonCustom> createState() => _ButtonCustomState();
-}
-
-class _ButtonCustomState extends State<ButtonCustom> {
-  @override
   Widget build(BuildContext context) {
     return ElevatedButton(
         onPressed: () {
-          widget.loading ? () {} : widget.onPressed();
+          loading ? () {} : onPressed();
         },
         style: ElevatedButton.styleFrom(
-          side: widget.getButtonStyle()['side'],
+          side: getButtonStyle()['side'],
           elevation: 0,
-          backgroundColor: widget.getButtonStyle()['backgroundColor'],
+          backgroundColor: getButtonStyle()['backgroundColor'],
           shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(8))),
         ),
         child: Stack(
           children: [
             Visibility(
-              visible: !widget.loading,
+              visible: !loading,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  if (widget.icon != null)
+                  if (icon != null)
                     Row(
                       children: [
                         Icon(
-                          widget.icon,
+                          icon,
                           color: Colors.black,
                         ),
                         const SizedBox(
@@ -97,21 +92,20 @@ class _ButtonCustomState extends State<ButtonCustom> {
                       ],
                     ),
                   Text(
-                    widget.text,
-                    style: widget.getTextStyle(),
+                    text,
+                    style: getTextStyle(),
                   ),
                 ],
               ),
             ),
             Visibility(
-                visible: widget.loading,
+                visible: loading,
                 child: SizedBox(
                   height: 20,
                   width: 20,
                   child: CircularProgressIndicator(
-                    color: widget.type == ButtonType.light
-                        ? Colors.black
-                        : Colors.white,
+                    color:
+                        type == ButtonType.light ? Colors.black : Colors.white,
                     strokeWidth: 2,
                   ),
                 ))
